@@ -10,7 +10,7 @@ import { Loader } from './components/Loader';
 import { getTodos } from './api';
 import { Todo } from './types/Todo';
 
-function prepearList(list: Todo[], status: string, query: string) {
+function prepareList(list: Todo[], status: string, query: string) {
   let statusList: Todo[] = [];
 
   switch (status) {
@@ -39,15 +39,15 @@ export const App: React.FC = () => {
   const [filter, setFilter] = useState('all');
   const [query, setQuery] = useState('');
   const [modalId, setModalId] = useState(0);
-  const [loading, setLoadimg] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getTodos()
       .then(setList)
-      .finally(() => setLoadimg(false));
+      .finally(() => setLoading(false));
   }, []);
 
-  const visibleList = prepearList(list, filter, query);
+  const visibleList = prepareList(list, filter, query);
 
   return (
     <>
@@ -68,7 +68,11 @@ export const App: React.FC = () => {
               {loading === true ? (
                 <Loader />
               ) : (
-                <TodoList list={visibleList} setId={setModalId} modalId={modalId} />
+                <TodoList
+                  list={visibleList}
+                  setId={setModalId}
+                  modalId={modalId}
+                />
               )}
             </div>
           </div>

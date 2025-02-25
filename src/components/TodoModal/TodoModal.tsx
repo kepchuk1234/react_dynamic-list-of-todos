@@ -11,15 +11,15 @@ type Props = {
 };
 
 export const TodoModal: React.FC<Props> = ({ postId, resetId, list }) => {
-  const defoultUser: User = {
+  const defaultUser: User = {
     id: 0,
     name: 'name',
-    email: 'emale',
+    email: 'email',
     phone: 'unknown',
   };
 
-  const [user, setUser] = useState<User>(defoultUser);
-  const [loading, setLoadimg] = useState(true);
+  const [user, setUser] = useState<User>(defaultUser);
+  const [loading, setLoading] = useState(true);
 
   const defaultPost: Todo = {
     id: 0,
@@ -33,7 +33,7 @@ export const TodoModal: React.FC<Props> = ({ postId, resetId, list }) => {
   useEffect(() => {
     getUser(post.userId)
       .then(setUser)
-      .finally(() => setLoadimg(false));
+      .finally(() => setLoading(false));
   }, [post.userId]);
 
   return (
